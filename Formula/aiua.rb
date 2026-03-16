@@ -8,6 +8,7 @@ class Aiua < Formula
   head "https://github.com/likesjx/philotic-stack.git", branch: "develop"
 
   depends_on "rust" => :build
+  depends_on "muninn"
 
   def install
     system "cargo", "install", *std_cargo_args(path: "crates/aiua")
@@ -22,8 +23,8 @@ class Aiua < Formula
     <<~EOS
       aiua is the hotel daemon for the Philotic Stack.
 
-      Managed via the phil CLI (install philotic-web):
-        brew install jaredlikes/philotic/philotic-web
+      Managed via the phil CLI:
+        brew install likesjx/philotic/philotic-web
         phil init
         phil start
     EOS
