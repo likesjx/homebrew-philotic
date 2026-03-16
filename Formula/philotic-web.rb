@@ -12,11 +12,12 @@ class PhiloticWeb < Formula
 
   def install
     system "cargo", "install", *std_cargo_args(path: "crates/philotic-web")
+    bin.install_symlink bin/"philotic-web" => "phil"
   end
 
   def caveats
     <<~EOS
-      phil is the operator CLI for the Philotic Stack.
+      philotic-web is installed as both `philotic-web` and `phil`.
 
       Quick start:
         phil init      # generate identity keypair + mesh-config.json
@@ -28,5 +29,6 @@ class PhiloticWeb < Formula
 
   test do
     assert_match "philotic-web", shell_output("#{bin}/philotic-web --version 2>&1")
+    assert_match "philotic-web", shell_output("#{bin}/phil --version 2>&1")
   end
 end
