@@ -8,6 +8,7 @@ class PhiloticWeb < Formula
   head "https://github.com/likesjx/philotic-stack.git", branch: "develop"
 
   depends_on "rust" => :build
+  depends_on "just"
   depends_on "aiua"
 
   def install
