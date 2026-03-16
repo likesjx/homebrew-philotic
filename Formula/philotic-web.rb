@@ -1,16 +1,11 @@
 class PhiloticWeb < Formula
-  desc "Operator CLI for managing a Philotic Web — a mesh of aiua nodes"
+  desc "Operator CLI for managing a Philotic Stack — hotel daemon + agents"
   homepage "https://github.com/likesjx/philotic-stack"
-  # Populated by release automation — do not edit manually
-  url "https://github.com/likesjx/philotic-stack/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  url "https://github.com/likesjx/philotic-stack/archive/refs/tags/v0.1.0-alpha.tar.gz"
+  sha256 "ac5fffa93c09a209caf651a8bd691a0c3187d3dd961d1c8baf57beca5639aab4"
+  version "0.1.0-alpha"
   license "MIT"
-  head "https://github.com/likesjx/philotic-stack.git", branch: "main"
-
-  bottle do
-    # Bottles built and uploaded by CI on release
-    # root_url "https://github.com/likesjx/philotic-stack/releases/download/v0.1.0"
-  end
+  head "https://github.com/likesjx/philotic-stack.git", branch: "develop"
 
   depends_on "rust" => :build
   depends_on "jaredlikes/philotic/aiua"
@@ -21,21 +16,13 @@ class PhiloticWeb < Formula
 
   def caveats
     <<~EOS
-      philotic-web is the operator CLI for the Philotic Web.
+      phil is the operator CLI for the Philotic Stack.
 
-      Quick start — bootstrap a local node:
-        philotic-web init
-        philotic-web start
-
-      Inspect the mesh:
-        philotic-web status
-        philotic-web mesh nodes
-
-      Manage a remote node:
-        philotic-web --node <hostname> guests list
-
-      For full documentation:
-        https://github.com/likesjx/philotic-stack
+      Quick start:
+        phil init      # generate identity keypair + mesh-config.json
+        phil start     # start the hotel daemon (materializes all agents)
+        phil status    # check running agents
+        phil agents    # list configured agents
     EOS
   end
 
