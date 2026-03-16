@@ -1,5 +1,5 @@
 class Muninn < Formula
-  desc "Cognitive memory store with Ebbinghaus decay, Hebbian learning, and MCP/REST/gRPC access"
+  desc "Cognitive memory store with Ebbinghaus decay, Hebbian learning, and MCP/REST access"
   homepage "https://github.com/scrypster/muninndb"
   version "0.4.3-alpha"
   license "Apache-2.0"
@@ -19,31 +19,20 @@ class Muninn < Formula
     bin.install "muninn"
   end
 
-  service do
-    run [opt_bin/"muninn", "serve"]
-    keep_alive true
-    log_path var/"log/muninn.log"
-    error_log_path var/"log/muninn.log"
-    working_dir var/"muninn"
-  end
-
-  def post_install
-    (var/"muninn").mkpath
-  end
-
   def caveats
     <<~EOS
-      muninn runs as a background service on port 8475 (REST/MCP) and 8476 (gRPC).
+      muninn manages its own background daemon. To start it:
+        muninn init    # first-time setup
+        muninn start   # start the daemon
 
-      Start as a service:
-        brew services start likesjx/philotic/muninn
-
-      Or run manually:
-        muninn serve
+      Ports:
+        :8475  REST API
+        :8750  MCP (AI tool integration)
+        :8476  Web dashboard — http://127.0.0.1:8476
     EOS
   end
 
   test do
-    assert_match "muninn", shell_output("#{bin}/muninn --version 2>&1")
+    assert_match "muninn", shell_output("#{bin}/muninn --help 2>&1")
   end
 end
