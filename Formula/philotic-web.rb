@@ -8,7 +8,7 @@ class PhiloticWeb < Formula
   head "https://github.com/likesjx/philotic-stack.git", branch: "develop"
 
   depends_on "rust" => :build
-  depends_on "likesjx/philotic/aiua"
+  depends_on "aiua"
 
   def install
     system "cargo", "install", *std_cargo_args(path: "crates/philotic-web")
