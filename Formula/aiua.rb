@@ -1,29 +1,16 @@
 class Aiua < Formula
-  desc "Hotel daemon for the Philotic Web — materializes and supervises AI agents (philotes)"
+  desc "Hotel daemon for the Philotic Stack — materializes and supervises AI agents"
   homepage "https://github.com/likesjx/philotic-stack"
-  # Populated by release automation — do not edit manually
-  url "https://github.com/likesjx/philotic-stack/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  url "https://github.com/likesjx/philotic-stack/archive/refs/tags/v0.1.0-alpha.tar.gz"
+  sha256 "ac5fffa93c09a209caf651a8bd691a0c3187d3dd961d1c8baf57beca5639aab4"
+  version "0.1.0-alpha"
   license "MIT"
-  head "https://github.com/likesjx/philotic-stack.git", branch: "main"
-
-  bottle do
-    # Bottles built and uploaded by CI on release
-    # root_url "https://github.com/likesjx/philotic-stack/releases/download/v0.1.0"
-  end
+  head "https://github.com/likesjx/philotic-stack.git", branch: "develop"
 
   depends_on "rust" => :build
 
   def install
     system "cargo", "install", *std_cargo_args(path: "crates/aiua")
-  end
-
-  service do
-    run [opt_bin/"aiua", "--load-config", etc/"philotic/mesh-config.json"]
-    keep_alive true
-    log_path var/"log/aiua.log"
-    error_log_path var/"log/aiua.log"
-    working_dir var/"philotic"
   end
 
   def post_install
@@ -33,21 +20,12 @@ class Aiua < Formula
 
   def caveats
     <<~EOS
-      aiua is the hotel daemon for the Philotic Web.
+      aiua is the hotel daemon for the Philotic Stack.
 
-      Before starting, create a config file at:
-        #{etc}/philotic/mesh-config.json
-
-      Copy the example config from the source repo:
-        cp #{HOMEBREW_PREFIX}/share/philotic/mesh-config.example.json \\
-           #{etc}/philotic/mesh-config.json
-
-      Start the hotel daemon:
-        aiua --hotel <name> --load-config #{etc}/philotic/mesh-config.json
-
-      Or manage it via the Philotic Web CLI:
+      Managed via the phil CLI (install philotic-web):
         brew install jaredlikes/philotic/philotic-web
-        philotic-web start
+        phil init
+        phil start
     EOS
   end
 
