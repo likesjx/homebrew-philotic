@@ -2,7 +2,7 @@ class PhiloticWeb < Formula
   desc "Operator CLI for managing a Philotic Stack — hotel daemon + agents"
   homepage "https://github.com/likesjx/philotic-stack"
   url "https://github.com/likesjx/philotic-stack/archive/refs/tags/v0.1.0-alpha.tar.gz"
-  sha256 "902c433755817b4b0bbbc121503cd53993d9eb0644234acd92fbe63d088162dd"
+  sha256 "2c585c7de98c7859e81f908b4b9a1c5683f26e4f57c93bc471f334fe114f4712"
   version "0.1.0-alpha"
   license "MIT"
   head "https://github.com/likesjx/philotic-stack.git", branch: "develop"
