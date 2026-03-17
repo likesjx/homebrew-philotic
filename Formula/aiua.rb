@@ -2,7 +2,7 @@ class Aiua < Formula
   desc "Hotel daemon for the Philotic Stack — materializes and supervises AI agents"
   homepage "https://github.com/likesjx/philotic-stack"
   url "https://github.com/likesjx/philotic-stack/archive/refs/tags/v0.1.0-alpha.tar.gz"
-  sha256 "e487f666208ddeadd6b8f982e731df46ab550b974a3005d001a03cc06273e87c"
+  sha256 "b77da4549224ba2ecc57d48e755a0f9a5fb5d637eab58e555a13ea39be02275e"
   version "0.1.0-alpha"
   license "MIT"
   head "https://github.com/likesjx/philotic-stack.git", branch: "develop"
