@@ -15,6 +15,9 @@ class Aiua < Formula
     system "cargo", "install", *std_cargo_args(path: "crates/membrane")
     system "cargo", "install", *std_cargo_args(path: "crates/philote")
     system "cargo", "install", *std_cargo_args(path: "crates/model-router")
+    system "cargo", "install", *std_cargo_args(path: "crates/graph-runner")
+    system "cargo", "install", *std_cargo_args(path: "crates/tool-runner")
+    system "cargo", "install", *std_cargo_args(path: "crates/onnx-runner")
   end
 
   def post_install
